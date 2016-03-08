@@ -1,0 +1,16 @@
+{
+  "name": "johnny-five-test",
+  "version": "1.0.0",
+  "dependencies": {
+    "johnny-five": {
+      "version": "0.9.19",
+      "from": "src/mock-johnny-five",
+      "resolved": "file:src/mock-johnny-five"
+    },
+    "raspi-io": {
+      "version": "5.2.0",
+      "from": "src/mock-raspi-io",
+      "resolved": "file:src/mock-raspi-io"
+    }
+  }
+}

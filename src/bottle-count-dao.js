@@ -1,19 +1,17 @@
 'use strict';
 const q = require('q')
 
-const tableName = 'bottlecount';
-
 class BottleCountDao {
   
   constructor(db) {
     this.db = db;
     db.serialize(() => {
-      db.run(`CREATE TABLE IF NOT EXISTS ${tableName} (timestamp TEXT)`);
+      db.run('CREATE TABLE IF NOT EXISTS bottlecount (timestamp TEXT)');
     });  
   }
 
   put(bottleCount) {
-    this.db.run(`INSERT INTO ${tableName} VALUES (?)`, 
+    this.db.run('INSERT INTO bottlecount VALUES (?)', 
       [bottleCount.timestamp.toISOString()]);
   }
 
