@@ -9,11 +9,11 @@ const config = require('./config.js'),
 var board = new five.Board({
   io: new raspi()
 });
-var bottleCounter = new BottleCounter(data.bottleCountDao);
+var bottleCounter = new BottleCounter(data.eventRepository);
 bottleCounter.bottleOpened();
-board.on('ready', function() {
-
+board.on('ready', () => {
   console.log('board.ready');
+  
   var counter = new Counter();
 
   var button = new five.Button({
@@ -21,9 +21,9 @@ board.on('ready', function() {
     pin: config.buttonPin,
 	});
 
-  button.on('up', function() {
+  button.on('up', () => {
     console.log('button.up');
-    counter.count();
+    bottleCounter.bottleOpened();
   });
 
   this.repl.inject({

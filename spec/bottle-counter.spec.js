@@ -4,14 +4,14 @@ var BottleCounter = require('../src/bottle-counter');
 
 describe('BottleCounter', () => {
 
-  var bottleCounter, bottleCountDao;
+  var bottleCounter, eventRepository;
 
   beforeEach(() => {
     jasmine.clock().install();
-    bottleCountDao = {
+    eventRepository = {
       put: jasmine.createSpy('put')
     };
-    bottleCounter = new BottleCounter(bottleCountDao);
+    bottleCounter = new BottleCounter(eventRepository);
   });
 
   it('saves a bottle count object when a bottle is opened', () => {
@@ -20,9 +20,10 @@ describe('BottleCounter', () => {
 
     bottleCounter.bottleOpened();
 
-    expect(bottleCountDao.put.calls.count()).toBe(1);
+    expect(eventRepository.put.calls.count()).toBe(1);
 
-    expect(bottleCountDao.put.calls.argsFor(0)[0]).toEqual({timestamp: timestamp});
+    expect(eventRepository.put.calls.argsFor(0)[0])
+      .toEqual({type: 'bottleOpened', timestamp: timestamp});
   });
 
   afterEach(() => {

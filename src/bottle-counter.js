@@ -2,12 +2,15 @@
 
 class BottleCounter {
 
-  constructor(bottleCountDao) {
-  	this.bottleCountDao = bottleCountDao;
+  constructor(eventRepository) {
+  	this.eventRepository = eventRepository;
   }
 
   bottleOpened() {
-    this.bottleCountDao.put({timestamp: new Date()});
+    this.eventRepository.put({
+    	type: 'bottleOpened',
+    	timestamp: new Date()
+    });
   }
 }
 
