@@ -12,7 +12,7 @@ var board = new five.Board({
 
 var bottleCounter = new BottleCounter(data.eventRepository);
 
-board.on('ready', () => {
+board.on('ready', function() {
   console.log('board.ready');
 
   var button = new five.Button({
