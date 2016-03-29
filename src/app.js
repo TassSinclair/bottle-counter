@@ -9,15 +9,13 @@ const config = require('./config.js'),
 var board = new five.Board({
   io: new raspi()
 });
+
 var bottleCounter = new BottleCounter(data.eventRepository);
 
 board.on('ready', () => {
   console.log('board.ready');
 
-  var button = new five.Button({
-    board: board,
-    pin: config.buttonPin,
-	});
+  var button = new five.Button(config.buttonPin);
 
   button.on('up', () => {
     console.log('button.up');
