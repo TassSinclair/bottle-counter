@@ -10,11 +10,9 @@ var board = new five.Board({
   io: new raspi()
 });
 var bottleCounter = new BottleCounter(data.eventRepository);
-bottleCounter.bottleOpened();
+
 board.on('ready', () => {
   console.log('board.ready');
-  
-  var counter = new Counter();
 
   var button = new five.Button({
     board: board,
