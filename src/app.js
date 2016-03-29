@@ -15,7 +15,10 @@ var bottleCounter = new BottleCounter(data.eventRepository);
 board.on('ready', () => {
   console.log('board.ready');
 
-  var button = new five.Button(config.buttonPin);
+  var button = new five.Button({
+    board: board,
+    pin: config.buttonPin
+  });
 
   button.on('up', () => {
     console.log('button.up');

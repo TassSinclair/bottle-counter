@@ -1,7 +1,7 @@
 'use strict';
 
 const config = {
-  buttonPin: 'GPIO17'
+  buttonPin: 'GPIO4'
 };
 
 module.exports = config;
