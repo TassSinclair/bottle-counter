@@ -7,7 +7,7 @@ class RepositoryLogger {
   }
 
   put(event) {
-    console.log(`storing $event`);
+    console.log(`storing ${JSON.stringify(event)}`);
     return this.repository.put(event);
   }
 
