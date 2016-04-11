@@ -11,6 +11,7 @@ var board = new five.Board({
 });
 
 var bottleCounter = new BottleCounter(data.eventRepository);
+var buttonEventInterpreter = new ButtonEventInterpreter(bottleCounter);
 
 board.on('ready', function() {
 
@@ -19,9 +20,7 @@ board.on('ready', function() {
     pin: config.buttonPin
   });
 
-  button.on('up', () => {
-    bottleCounter.bottleOpened();
-  });
+  button.on('up', buttonEventInterpreter.buttonUp);
 
   this.repl.inject({
     button: button

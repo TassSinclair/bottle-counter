@@ -1,6 +1,6 @@
 'use strict';
 
-const q = require('q')
+const q = require('q');
 
 class EventRepository {
   
@@ -38,4 +38,4 @@ class EventRepository {
   }
 }
 
-module.exports = EventRepository
+module.exports = EventRepository;

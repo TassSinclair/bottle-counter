@@ -17,4 +17,4 @@ class RepositoryLogger {
   }
 }
 
-module.exports = RepositoryLogger
+module.exports = RepositoryLogger;
