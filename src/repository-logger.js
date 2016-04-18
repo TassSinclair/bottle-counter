@@ -13,7 +13,7 @@ class RepositoryLogger {
 
   getAll() {
     console.log('getting all');
-    this.repository.getAll();
+    return this.repository.getAll();
   }
 }
 
