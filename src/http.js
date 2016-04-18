@@ -11,18 +11,25 @@ class HttpServer {
 	start() {
 		this.io = createSocket(this.port);
 		this.io.on('connection', (socket) => this.onConnection(socket));
+		this.bottleCounter.on('countUpdate', (newCount) => this.onNewCountReceived(newCount));
 	}
 
 	onConnection(socket) {
 		console.log("Connection!");
 
-	  socket.emit('count', this.createCountMessage());
+		socket.emit('count', this.createCountMessage(this.bottleCounter.currentCount));
 	}
 
-	createCountMessage() {
+	createCountMessage(count) {
 		return {
-	  	currentCount: this.bottleCounter.currentCount
-	  };
+			currentCount: count
+		};
+	}
+
+	onNewCountReceived(newCount) {
+		console.log("Broadcasting update: new count is " + newCount);
+
+		this.io.emit('count', this.createCountMessage(newCount));
 	}
 }
 

@@ -1,8 +1,10 @@
 'use strict';
+var events = require('events');
 
-class BottleCounter {
+class BottleCounter extends events.EventEmitter {
 
   constructor(eventRepository) {
+  	super();
   	this.eventRepository = eventRepository;
   	this.currentCount = 0;
   }
@@ -14,6 +16,8 @@ class BottleCounter {
     	type: 'bottleOpened',
     	timestamp: new Date()
     });
+
+    this.emit('countUpdate', this.currentCount);
   }
 }
 
