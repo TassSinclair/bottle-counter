@@ -15,6 +15,7 @@
     "flipclock": "^0.7.8",
     "http": "0.0.0",
     "johnny-five": "^0.9.19",
+    "jquery": "^2.2.3",
     "q": "^1.4.1",
     "raspi-io": "^5.2.0",
     "socket.io": "^1.4.5",
