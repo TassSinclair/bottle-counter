@@ -1,0 +1,41 @@
+<html>
+<head>
+</head>
+<script src="resources/jquery/dist/jquery.min.js" type="text/javascript">
+</script>
+<script src="resources/flipclock/compiled/flipclock.min.js" type="text/javascript">
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<link rel="stylesheet" href="resources/flipclock/compiled/flipclock.css"/>
+<meta name="viewport" content="width=300">
+<style>
+	body {
+		background-color: #ddd;
+	}
+	.flip-clock-wrapper {
+		align-items: center;
+    	display: flex;
+    	justify-content: center;
+    	margin: 0;
+    	height: 100%;
+	}
+</style>
+</head>
+<body>
+	<div class="counter"></div>
+
+	<script type="text/javascript">
+		var counter = $('.counter').FlipClock(0, {
+			clockFace: 'Counter'
+		});
+
+
+		var socket = io();
+		socket.on('count', function(msg){
+    		counter.setValue(msg.currentCount);
+  		});
+
+	</script>
+
+</body>
+</html>

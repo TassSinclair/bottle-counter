@@ -181,6 +181,11 @@
       "from": "finalhandler@0.4.1",
       "resolved": "https://registry.npmjs.org/finalhandler/-/finalhandler-0.4.1.tgz"
     },
+    "flipclock": {
+      "version": "0.7.8",
+      "from": "flipclock@latest",
+      "resolved": "https://registry.npmjs.org/flipclock/-/flipclock-0.7.8.tgz"
+    },
     "forwarded": {
       "version": "0.1.0",
       "from": "forwarded@>=0.1.0 <0.2.0",
@@ -245,6 +250,11 @@
       "version": "0.9.19",
       "from": "src/mock-johnny-five",
       "resolved": "file:src/mock-johnny-five"
+    },
+    "jquery": {
+      "version": "2.2.3",
+      "from": "jquery@>=1.7.0",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-2.2.3.tgz"
     },
     "json3": {
       "version": "3.2.6",

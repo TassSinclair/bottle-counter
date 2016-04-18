@@ -1,5 +1,8 @@
 'use strict';
 
+var express = require('express'),
+    http = require('http');
+
 var createSocket = require('socket.io');
 
 class HttpServer {
@@ -9,9 +12,19 @@ class HttpServer {
 	}
 
 	start() {
-		this.io = createSocket(this.port);
+		this.app = express();
+		this.http = http.Server(this.app);
+		this.io = createSocket(this.http);
+
+		this.app.get('/', function(req, res){
+		  res.sendfile('./src/www/index.html');
+		});
+		this.app.use('/resources', express.static("node_modules/"));
+
+
 		this.io.on('connection', (socket) => this.onConnection(socket));
 		this.bottleCounter.on('countUpdate', (newCount) => this.onNewCountReceived(newCount));
+		this.http.listen(this.port);
 	}
 
 	onConnection(socket) {
