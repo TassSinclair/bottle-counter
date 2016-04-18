@@ -4,6 +4,7 @@ const config = require('./config.js'),
       five = require('johnny-five'),
       raspi = require('raspi-io'),
       BottleCounter = require('./bottle-counter.js'),
+      ButtonEventInterpreter = require('./button-event-interpreter.js'),
       data = require('./data.js');
 
 var board = new five.Board({
@@ -20,7 +21,7 @@ board.on('ready', function() {
     pin: config.buttonPin
   });
 
-  button.on('up', buttonEventInterpreter.buttonUp);
+  button.on('up', () => buttonEventInterpreter.buttonUp());
 
   this.repl.inject({
     button: button
