@@ -19,6 +19,9 @@ class HttpServer {
 		this.app.get('/', function(req, res){
 		  res.sendfile(__dirname + '/www/index.html');
 		});
+		this.app.get('/apple-touch-icon.png', function(req, res){
+		  res.sendfile(__dirname + '/www/apple-touch-icon.png');
+		});
 		this.app.use('/resources', express.static(__dirname + '/../node_modules/'));
 
 
