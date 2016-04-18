@@ -5,7 +5,8 @@ const config = require('./config.js'),
       raspi = require('raspi-io'),
       BottleCounter = require('./bottle-counter.js'),
       ButtonEventInterpreter = require('./button-event-interpreter.js'),
-      data = require('./data.js');
+      data = require('./data.js'),
+      http = require('./http.js');
 
 var board = new five.Board({
   io: new raspi()
@@ -28,3 +29,6 @@ board.on('ready', function() {
   });
 
 });
+
+var server = new http(8080, bottleCounter);
+server.start();
