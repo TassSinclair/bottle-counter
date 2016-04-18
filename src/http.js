@@ -17,9 +17,9 @@ class HttpServer {
 		this.io = createSocket(this.http);
 
 		this.app.get('/', function(req, res){
-		  res.sendfile('./src/www/index.html');
+		  res.sendfile(__dirname + '/www/index.html');
 		});
-		this.app.use('/resources', express.static("node_modules/"));
+		this.app.use('/resources', express.static(__dirname + '/../node_modules/'));
 
 
 		this.io.on('connection', (socket) => this.onConnection(socket));
