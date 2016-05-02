@@ -1,9 +1,8 @@
 'use strict';
 
-var express = require('express'),
-    http = require('http');
-
-var createSocket = require('socket.io');
+const express = require('express'),
+    http = require('http'),
+    createSocket = require('socket.io');
 
 class HttpServer {
 	constructor(port, bottleCounter) {

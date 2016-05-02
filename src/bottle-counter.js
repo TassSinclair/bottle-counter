@@ -6,7 +6,9 @@ class BottleCounter extends events.EventEmitter {
   constructor(eventRepository) {
   	super();
   	this.eventRepository = eventRepository;
-    this.eventRepository.getAll().then((events) => this.currentCount = events.length);
+    this.eventRepository.getAll().then((events) => {
+      this.currentCount = events.length;
+    });
   }
 
   bottleOpened() {
