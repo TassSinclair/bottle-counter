@@ -25,9 +25,9 @@ class EventRepository {
     };
   }
 
-  getAll() {
+  _select(query, params) {
     var deferred = q.defer();
-    this.db.all('SELECT * FROM event ORDER BY timestamp', (err, rows) => {
+    this.db.all(query, params, (err, rows) => {
       if (err) {
         deferred.reject(err);
       } else {
@@ -35,6 +35,17 @@ class EventRepository {
       }
     });
     return deferred.promise;
+  }
+
+  getAll(type) {
+    return this._select('SELECT * FROM event WHERE type = ? ORDER BY timestamp',
+      [type]);
+  }
+
+  getSince(type, since) {
+    var timestamp = since.toISOString();
+    return this._select('SELECT * FROM event WHERE type = ? AND timestamp >= ? ORDER BY timestamp',
+      [type, timestamp]);
   }
 }
 

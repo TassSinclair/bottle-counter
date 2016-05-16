@@ -16,12 +16,20 @@ class HttpServer {
 		this.io = createSocket(this.http);
 
 		this.app.get('/', function(req, res){
-		  res.sendfile(__dirname + '/www/index.html');
+		  res.sendFile(__dirname + '/www/index.html');
 		});
 		this.app.get('/apple-touch-icon.png', function(req, res){
-		  res.sendfile(__dirname + '/www/apple-touch-icon.png');
+		  res.sendFile(__dirname + '/www/apple-touch-icon.png');
 		});
 		this.app.use('/resources', express.static(__dirname + '/../node_modules/'));
+
+		this.app.get('/api/days/:days', (req, res) => {
+		  var d = new Date();
+		  d.setDate(d.getDate() - req.params.days);
+		  this.bottleCounter.getSince(d).then(events => {
+		  	res.json({events});
+		  });
+		});
 
 
 		this.io.on('connection', (socket) => this.onConnection(socket));

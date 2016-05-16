@@ -10,14 +10,22 @@ describe('BottleCounter', () => {
     {type: 'bottleOpened', timestamp: new Date()},
     {type: 'bottleOpened', timestamp: new Date()}
   ];
+  var getAllCallback = { then: (callback) => callback(events) };
+  var getSincePromise = q.when();
 
   beforeEach(() => {
     jasmine.clock().install();
     eventRepository = {
       put: jasmine.createSpy('put'),
-      getAll: () => ({ then: (callback) => callback(events) })
+      getAll: jasmine.createSpy('getAll').and.returnValue(getAllCallback),
+      getSince: jasmine.createSpy('getSince').and.returnValue(getSincePromise)
     };
     bottleCounter = new BottleCounter(eventRepository);
+  });
+
+  it('initialises the currentCount based on the number of events recorded', () => {
+    expect(eventRepository.getAll.calls.argsFor(0)[0]).toEqual('bottleOpened');
+    expect(bottleCounter.currentCount).toBe(2);
   });
 
   it('saves a bottle count object when a bottle is opened', () => {
@@ -32,8 +40,10 @@ describe('BottleCounter', () => {
       .toEqual({type: 'bottleOpened', timestamp: timestamp});
   });
 
-  it('initialises the currentCount based on the number of events recorded', () => {
-    expect(bottleCounter.currentCount).toBe(2);
+  it('gets all bottle opened counts since a given date', () => {
+    var date = new Date();
+    expect(bottleCounter.getSince(date)).toBe(getSincePromise);
+    expect(eventRepository.getSince.calls.argsFor(0)).toEqual(['bottleOpened', date]);
   });
 
   it('increments the currentCount when a bottle is opened', () => {

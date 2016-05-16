@@ -1,12 +1,13 @@
 'use strict';
-var events = require('events');
+const events = require('events');
 
 class BottleCounter extends events.EventEmitter {
 
   constructor(eventRepository) {
   	super();
+    this.eventName = 'bottleOpened';
   	this.eventRepository = eventRepository;
-    this.eventRepository.getAll().then((events) => {
+    this.eventRepository.getAll(this.eventName).then((events) => {
       this.currentCount = events.length;
     });
   }
@@ -15,11 +16,15 @@ class BottleCounter extends events.EventEmitter {
   	this.currentCount++;
 
     this.eventRepository.put({
-    	type: 'bottleOpened',
+    	type: this.eventName,
     	timestamp: new Date()
     });
 
     this.emit('countUpdate', this.currentCount);
+  }
+
+  getSince(since) {
+    return this.eventRepository.getSince(this.eventName, since);
   }
 }
 
