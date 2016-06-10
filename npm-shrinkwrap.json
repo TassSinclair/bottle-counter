@@ -266,6 +266,11 @@
       "from": "json3@3.2.6",
       "resolved": "https://registry.npmjs.org/json3/-/json3-3.2.6.tgz"
     },
+    "lodash": {
+      "version": "4.13.0",
+      "from": "lodash@latest",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.13.0.tgz"
+    },
     "lru-cache": {
       "version": "2.7.3",
       "from": "lru-cache@>=2.0.0 <3.0.0",
@@ -305,6 +310,11 @@
       "version": "0.3.0",
       "from": "minimatch@>=0.3.0 <0.4.0",
       "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.3.0.tgz"
+    },
+    "moment": {
+      "version": "2.13.0",
+      "from": "moment@latest",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.13.0.tgz"
     },
     "ms": {
       "version": "0.7.1",

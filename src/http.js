@@ -18,15 +18,15 @@ class HttpServer {
 		this.app.get('/', function(req, res){
 		  res.sendFile(__dirname + '/www/index.html');
 		});
-		this.app.get('/apple-touch-icon.png', function(req, res){
-		  res.sendFile(__dirname + '/www/apple-touch-icon.png');
-		});
+		this.app.use('/', express.static(__dirname + '/www/'));
+		
 		this.app.use('/resources', express.static(__dirname + '/../node_modules/'));
 
 		this.app.get('/api/days/:days', (req, res) => {
 		  var d = new Date();
 		  d.setDate(d.getDate() - req.params.days);
 		  this.bottleCounter.getSince(d).then(events => {
+		  	console.log(events);
 		  	res.json({events});
 		  });
 		});

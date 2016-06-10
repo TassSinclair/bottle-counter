@@ -1,0 +1,74 @@
+body {
+	background-color: #ccc;
+	margin: 0;
+}
+.container {
+	position: relative;
+	height: 100%;
+}
+
+.counter {
+}
+
+.unknown {
+	font-size: 80px;
+	font-family: monospace;
+	text-align: center;
+}
+
+.graph {
+	font-size: 72px;
+	font-family: sans-serif;
+	text-align: center;
+	line-height: 100px;
+}
+
+.graph svg {
+  width: 280px;
+  height: 100px;
+}
+
+.nvd3 text {
+	font-size: 6px;
+}
+g.tick.zero line {
+	display:none;
+}
+
+.default {
+	position: absolute;
+	border: 5px solid #ccc;
+	border-radius: 20px;
+	left: 50%;
+	transition: all 1s ease;
+	transform: scale(0.3);
+	height: 100px;
+	width: 280px;
+	padding: 10px;
+	margin: -65px 0 0 -155px;
+}
+
+.secondary-position {
+	border-color: #eeeeec;
+	transition: all 1s ease, border-color 0.25s ease 0.5s;
+	z-index: 100;
+  bottom: 0;
+}
+
+.secondary-position:nth-child(1) {
+  left: 20%;
+}
+.secondary-position:nth-child(2) {
+  left: 50%;
+}
+.secondary-position:nth-child(3) {
+  left: 70%;
+}
+
+.main-position {
+	bottom: 30%;
+	transform: scale(1);
+	border-color: transparent;
+	transition: all 1s ease, border-color 0.25s ease;
+	z-index: 500;
+}
