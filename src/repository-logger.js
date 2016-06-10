@@ -11,9 +11,14 @@ class RepositoryLogger {
     return this.repository.put(event);
   }
 
-  getAll() {
-    console.log('getting all');
-    return this.repository.getAll();
+  getAll(type) {
+    console.log('getting all', type);
+    return this.repository.getAll(type);
+  }
+
+  getSince(type, since) {
+    console.log('getting since', type, since);
+    return this.repository.getSince(type, since);
   }
 }
 
