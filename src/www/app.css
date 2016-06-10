@@ -51,7 +51,7 @@ g.tick.zero line {
 .secondary-position {
 	border-color: #eeeeec;
 	transition: all 1s ease, border-color 0.25s ease 0.5s;
-	z-index: 100;
+	z-index: 500;
   bottom: 0;
 }
 
@@ -70,5 +70,5 @@ g.tick.zero line {
 	transform: scale(1);
 	border-color: transparent;
 	transition: all 1s ease, border-color 0.25s ease;
-	z-index: 500;
+	z-index: 100;
 }
