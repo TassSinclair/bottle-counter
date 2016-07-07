@@ -1,0 +1,51 @@
+text.weather-icons {
+	font-family: 'weathericons';
+	font-size: 12px;
+}
+
+text.day-name {
+    font-size: 10px;
+    paint-order: stroke;
+    stroke: #333;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    font-weight: 800;
+}
+.monday, .last-seven-weeks .nv-series-0 rect {
+    fill: rgb(204, 85, 85);
+}
+.tuesday, .last-seven-weeks .nv-series-1 rect {
+    fill: rgb(204, 119, 60);
+}
+.wednesday, .last-seven-weeks .nv-series-2 rect {
+    fill: rgb(204, 153, 36);
+}
+.thursday, .last-seven-weeks .nv-series-3 rect {
+    fill: rgb(204, 187, 12);
+}
+.friday, .last-seven-weeks .nv-series-4 rect {
+    fill: rgb(196, 155, 90);
+}
+.saturday, .last-seven-weeks .nv-series-5 rect {
+    fill: rgb(191, 122, 150);
+}
+.sunday, .last-seven-weeks .nv-series-6 rect {
+    fill: rgb(187, 90, 210);
+}
+
+text, path {
+	visibility: hidden;
+}
+
+.main-position text, .main-position path {
+  visibility: visible;
+}
+
+.nvd3 text {
+	font-size: 6px;
+}
+
+
+g.tick line, g.nv-zeroLine line {
+	display: none;
+}
