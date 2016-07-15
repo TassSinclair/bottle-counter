@@ -15,3 +15,10 @@ $ make run-with-mount #will run the app with your src mounted.
 ```
 
 One thing to remember, Docker ignore the `node_modules` folder. When running, the `node_modules` folder is inside the docker container and is never mounted from your local filesystem
+
+## test
+
+```sh
+#this will build a fresh docker-container and run jasmine tests
+$ make test
+```
