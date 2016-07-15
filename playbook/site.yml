@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+    - authorized_key: user=pi key={{ item }}
+      with_items:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChbNy10ALMPq9AAxLPGwGFpAwbXbH6rZMsTCrUX4WEOH9gFHhQ45VWzA2k12IP6CiUwiMI+Snng/7XYVORfzuVjXjVhg5Z7BHYI+tXTf1Y3TqKDs67FqcuKcQBPsGqeXJ99Zglr8A/MeJyleZvkFoLqH94aoltMkAzW0dreHpAmc6XQInumwDmpaRW30jjAfb1gOl4RWs3uL8JqAbV+Tb76TN9/6xGYaiFpy3NAA/wE0LTtq6rEF1eQrzb5VmS24LtrbxgHnZ/wElRu1UYcZIwoV5Xz8geihbzPCsdiuUBH9FnNNw1e3lEOuI+vOlpkQX5pPPeD5tNQmDskvE6HgEv"
