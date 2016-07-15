@@ -8,3 +8,6 @@ run:
 
 run-with-mount:
 		docker run -it --rm -p 8080:8080 -v `pwd`:/src ${IMAGE_NAME}
+
+test: build
+		docker run -it --rm ${IMAGE_NAME} npm test
