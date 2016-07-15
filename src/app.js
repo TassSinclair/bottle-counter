@@ -28,6 +28,8 @@ if(config.isDev) {
       addBottleOpened(now.toISOString());
     }
   }
+
+  setInterval(function() {bottleCounter.bottleOpened(); }, 4000);
 }
 
 var bottleCounter = new BottleCounter(data.eventRepository);

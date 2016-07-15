@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<div class="counter focusable default"></div>
-		<div class="graph last-seven-days focusable default">
+		<div class="graph last-few-days focusable default">
 			<svg>
 				<defs>
 					<linearGradient id="legend" x1="100%" y1="100%" x2="100%" y2="0%" spreadMethod="pad">
@@ -24,6 +24,10 @@
 					</linearGradient>
 				</defs>
 				<g class="legend">
+					<line x1="252" y1="0" x2="252" y2="100"
+						stroke="black" 
+						stroke-width="1"
+						/>
 					<rect height="100" width="5" x="258" y="0"
 						style="fill: url('#legend'); stroke: url('#legend');">
 					</rect>
@@ -46,29 +50,33 @@
 			</svg>
 			<div class="click-capture"></div>
 		</div>
-		<div class="graph last-seven-weeks focusable default">
+		<div class="graph last-few-weeks focusable default">
 			<svg>
 				<g class="legend">
-					<text x="260" y="10" class="day-name sunday">
-						Su
-					</text>
-					<text x="260" y="22" class="day-name saturday">
+					<line x1="254" y1="0" x2="254" y2="86"
+						stroke="black" 
+						stroke-width="1"
+						/>
+					<text x="260" y="10" class="day-name saturday">
 						Sa
 					</text>
-					<text x="260" y="34" class="day-name friday">
+					<text x="260" y="22" class="day-name friday">
 						Fr
 					</text>
-					<text x="260" y="46" class="day-name thursday">
+					<text x="260" y="34" class="day-name thursday">
 						Th
 					</text>
-					<text x="260" y="58" class="day-name wednesday">
+					<text x="260" y="46" class="day-name wednesday">
 						We
 					</text>
-					<text x="260" y="70" class="day-name tuesday">
+					<text x="260" y="58" class="day-name tuesday">
 						Tu
 					</text>
-					<text x="260" y="82" class="day-name monday">
+					<text x="260" y="70" class="day-name monday">
 						Mo
+					</text>
+					<text x="260" y="82" class="day-name sunday">
+						Su
 					</text>
 				</g>
 			</svg>
