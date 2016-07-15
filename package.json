@@ -1,6 +1,7 @@
 {
   "name": "bottle-counter",
   "version": "1.0.0",
+  "private": "true",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -24,7 +25,7 @@
     "q": "^1.4.1",
     "raspi-io": "^5.2.0",
     "socket.io": "^1.4.5",
-    "sqlite3": "^3.1.1"
+    "sqlite3": "^3.1.4"
   },
   "devDependencies": {
     "jasmine": "^2.4.1"
