@@ -6,4 +6,4 @@ COPY . /src
 WORKDIR /src
 RUN npm install
 
-CMD node src/app.
+CMD node ./src/app dev
