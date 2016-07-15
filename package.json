@@ -5,10 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine",
-    "install-prod": "npm install --no-shrinkwrap",
-    "start": "node src/app.js dev",
-    "start-prod": "node src/app.js prod"
+    "test": "./node_modules/.bin/jasmine"
   },
   "author": "",
   "license": "ISC",

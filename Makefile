@@ -11,3 +11,9 @@ run-with-mount:
 
 test: build
 		docker run -it --rm ${IMAGE_NAME} npm test
+
+install-prod:
+		npm install --no-shrinkwrap --production
+
+run-prod: install-prod
+		NODE_ENV=production node src/app.js
