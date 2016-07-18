@@ -1,0 +1,10 @@
+[Unit]
+Description=Bottle Counter
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/local/bin/forever /home/pi/projects/bottle-counter/src/app.js < /dev/null
+
+[Install]
+WantedBy=multi-user.target
