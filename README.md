@@ -22,3 +22,7 @@ One thing to remember, Docker ignores the `node_modules` folder. When running, t
 #this will build a fresh docker-container and run jasmine tests
 $ make test
 ```
+
+## deploy
+
+WORK IN PROGRESS
