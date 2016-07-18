@@ -13,13 +13,13 @@ var board = new five.Board({
   io: new raspi()
 });
 
-if(config.isDev) {
+if(process.env.NODE_ENV === "development") {
 
   function addBottleOpened(timestamp) {
-    data.eventRepository.put({type:'bottleOpened', timestamp: new Date(timestamp)});  
+    data.eventRepository.put({type:'bottleOpened', timestamp: new Date(timestamp)});
   }
 
-  
+
   var now = moment();
   for (var i = 0; i < 30; ++i) {
     now = now.startOf('day').subtract(1, 'day');
