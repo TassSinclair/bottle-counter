@@ -2,7 +2,7 @@
 
 [Raspberry Pi](https://www.raspberrypi.org/) + [Johnny Five](http://johnny-five.io/) + [Bottle Opener](http://www.barware.com.au/p/open-bottle-here-wall-mounted-bottle-opener/SX-OBH) + [tipsy devs](https://xkcd.com/323/) = Bottle Counter
 
-## development
+## Development
 
 In order to run bottle-counter in dev, it is easier to use Docker.
 
@@ -14,7 +14,7 @@ $ make run #will run the latest build image. But will not mount your current rep
 $ make run-with-mount #will run the app with your src mounted.
 ```
 
-One thing to remember, Docker ignore the `node_modules` folder. When running, the `node_modules` folder is inside the docker container and is never mounted from your local filesystem
+One thing to remember, Docker ignores the `node_modules` folder. When running, the `node_modules` folder is inside the docker container and is never mounted from your local filesystem
 
 ## test
 
