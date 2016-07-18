@@ -8,7 +8,7 @@ function getDatabase() {
   if (process.env.NODE_ENV === "development") {
     return new sqlite3.Database(':memory:');
   }
-  return new sqlite3.Database('/home/pi/projects/bottle-counter/database')
+  return new sqlite3.Database('/home/pi/bottle-counter-database.sqlite3')
 }
 
 module.exports = {

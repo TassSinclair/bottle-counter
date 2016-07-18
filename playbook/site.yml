@@ -1,10 +1,22 @@
 ---
 - hosts: all
-  become: yes
+  gather_facts: no
   tasks:
     - authorized_key: user=pi key={{ item }}
       with_items:
         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChbNy10ALMPq9AAxLPGwGFpAwbXbH6rZMsTCrUX4WEOH9gFHhQ45VWzA2k12IP6CiUwiMI+Snng/7XYVORfzuVjXjVhg5Z7BHYI+tXTf1Y3TqKDs67FqcuKcQBPsGqeXJ99Zglr8A/MeJyleZvkFoLqH94aoltMkAzW0dreHpAmc6XQInumwDmpaRW30jjAfb1gOl4RWs3uL8JqAbV+Tb76TN9/6xGYaiFpy3NAA/wE0LTtq6rEF1eQrzb5VmS24LtrbxgHnZ/wElRu1UYcZIwoV5Xz8geihbzPCsdiuUBH9FnNNw1e3lEOuI+vOlpkQX5pPPeD5tNQmDskvE6HgEv"
         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzbe/aq/8rwFrNCE4vGo/TysifbFa5vUtd76kAnoBfiU7Tv+iO3E9DWukpeeqFVAutMiw2KgdS/vVBG9jrYYHR5qZ0C1Tosu3hnIgrWeXkU2ywIvSOwgCeKnv5xauwriSHjcF4SnXo2r7QvmLXfyeauFsHWYT/Qf+3mSLgu11EGP1vCUDKsLW02xZSGeXvDI2lYOM4JIrs6pAFSj71o1pCZx4OR9Tp6kKLshhx2t5L+5orxp5EfwPo4qUreyRRJTRxAurGRGowaz++tVLsPQro356340HYnm3beAhxv+iz4yTFEwED70gdRIfPtuLEHP8SLIfgDTKrzemn1oExSLoX6Jbx5ON1lT6VA3Ch8LS+ACNeN+JDp1FKOf0ybB7sxHvxnqSEQKOwvTGqYJhvueQj85OJh8cOq2N3oQM4Vssw+iBkqEHSAhb2XuXSM68Z9dNnXupl3Iadm9OwdnirPPT0X55be8QovAw+/cMac3F+oDlpQOVAp3aXi4+qQRR586uM5Ea4Y2+5Roy84ly6VgudoAlYXBeYtna6quohrNI1e1jliycNTSrq6U56Q8CyYxFNLfyQaVnJ1cyxPs7S9kJY2CaOF1HbiMDLAc+sjh0Ks082iipF6kCfAlsRx96K8jJvkv7zPLXxb6x+RNApyEjWfmVskp7oV3RdRGg8c4dckw=="
+
+    - git: repo=https://github.com/tasssinclair/bottle-counter.git dest=/home/pi/projects/bottle-counter
+      notify: restart bottle-counter
+    - npm: path=/home/pi/projects/bottle-counter
+      notify: restart bottle-counter
+
     - copy: src=files/bottle-counter.service dest=/etc/systemd/system/bottle-counter.service owner=root group=root mode=0644
+      become: yes
     - service: name=bottle-counter enabled=yes state=started
+      become: yes
+
+  handlers: 
+    - name: restart bottle-counter
+      service: name=bottle-counter state=restarted
