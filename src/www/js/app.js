@@ -153,7 +153,9 @@ $(function() {
 
       chart.xAxis.tickFormat(function(tick) { return 'Week of ' + moment().week(tick).format('D MMM'); })
       chart.tooltip.enabled(false);
-      chart.yAxis.tickFormat(d3.format(',1f'));
+      chart.yAxis
+	.tickFormat(d3.format(',1f'))
+	.tickValues(0);;
 
     nv.addGraph(function() { return chart; });
     return chart;
