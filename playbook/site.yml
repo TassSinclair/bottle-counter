@@ -20,3 +20,4 @@
   handlers: 
     - name: restart bottle-counter
       service: name=bottle-counter state=restarted
+      become: yes
