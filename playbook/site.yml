@@ -9,7 +9,8 @@
 
     - git: repo=https://github.com/tasssinclair/bottle-counter.git dest=/home/pi/projects/bottle-counter
       notify: restart bottle-counter
-    - npm: path=/home/pi/projects/bottle-counter
+      
+    - command: npm install --no-shrinkwrap chdir=/home/pi/projects/bottle-counter
       notify: restart bottle-counter
 
     - copy: src=files/bottle-counter.service dest=/etc/systemd/system/bottle-counter.service owner=root group=root mode=0644
@@ -17,7 +18,7 @@
     - service: name=bottle-counter enabled=yes state=started
       become: yes
 
-  handlers: 
+  handlers:
     - name: restart bottle-counter
       service: name=bottle-counter state=restarted
       become: yes
