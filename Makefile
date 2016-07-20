@@ -12,8 +12,8 @@ run-with-mount:
 test: build
 		docker run -it --rm ${IMAGE_NAME} npm test
 
-install-prod:
-		npm install --no-shrinkwrap --production
+deploy:
+	  ansible-playbook -i playbook/hosts playbook/site.yml -vv
 
-run-prod: install-prod
-		NODE_ENV=production node src/app.js
+dry-deploy:
+	  ansible-playbook -i playbook/hosts playbook/site.yml -Cvv
