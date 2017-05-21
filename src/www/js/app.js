@@ -21,7 +21,7 @@ $(function() {
     }
   });
 
-  function groupByDay(data) {       
+  function groupByDay(data) {
     function startOfDay(date) { return moment(date).startOf('day').toISOString(); }
     var date = new Date();
     date.setDate(date.getDate() - 8);
@@ -34,7 +34,7 @@ $(function() {
     return _.extend(allDays, populatedDays);
   }
 
-  function groupByDayOfWeek(data) {       
+  function groupByDayOfWeek(data) {
     function dayOfWeek(date) { return moment(date).day(); }
     var allDays = {};
     for (var i = 0; i < 7; ++i) {
@@ -45,7 +45,7 @@ $(function() {
     return _.extend(allDays, populatedDays);
   }
 
-  function groupWeek(data) {       
+  function groupWeek(data) {
     function dayOfWeek(date) { return moment(date).format('dd'); }
     var populatedDays = _.groupBy(data, function(v) { return dayOfWeek(v.timestamp);});
 
@@ -55,7 +55,7 @@ $(function() {
   function mapLabelAndSumValues(data) {
     return _.map(data, function(items, key) { return {key: key, values: items};});
   }
-  
+
   function createLastFewDaysChart() {
     var chart = nv.models.discreteBarChart()
         .x(function(d) { return d.key })
@@ -63,11 +63,11 @@ $(function() {
         .showValues(true)
         .showYAxis(false)
         .valueFormat(d3.format(',1f'))
-        .height(150)
-        .width(320);
+        .height(300)
+        .width(758);
 
     chart.xAxis.tickFormat(function(tick) { return moment(tick).format('ddd D'); })
-      
+
     function percentageOfTotal(index, items) {
       return parseInt((index + 1) / items.length * 100) + '%';
     }
@@ -75,11 +75,11 @@ $(function() {
     function rgbOfPointInDay(millisAtPoint, totalMillisOnDay) {
       var percentageOfDay = parseInt(millisAtPoint / totalMillisOnDay * 100);
       var stops = [
-        {offset: 0, color: {r: 17, g: 17, b: 17}},
-        {offset: 15, color: {r: 204, g: 85, b: 85}},
-        {offset: 50, color: {r: 204, g: 204, b: 0}},
-        {offset: 85, color: {r: 187, g: 90, b: 210}},
-        {offset: 100, color: {r: 17, g: 17, b: 17}}
+        {offset: 0, color: {r: 17, g: 17, b: 17}}, // Dark
+        {offset: 15, color: {r: 204, g: 85, b: 85}}, // Sunset (Red)
+        {offset: 50, color: {r: 204, g: 204, b: 0}}, // Noon (Yellow)
+        {offset: 85, color: {r: 187, g: 90, b: 210}}, // Sunrise (Purple)
+        {offset: 100, color: {r: 17, g: 17, b: 17}} // Dark
       ];
       stops.forEach(function(stop, index) {
         if (stops[index + 1]) {
@@ -107,7 +107,7 @@ $(function() {
         gradient.append('stop')
           .attr('offset', offset)
           .attr('stop-color', rgb)
-          .attr('stop-opacity', 1);    
+          .attr('stop-opacity', 1);
       }
 
       var gradientName = 'barGrad' + i;
@@ -126,7 +126,7 @@ $(function() {
 
       for(var i = 0; i < d.values.length; ++i) {
         var nowMillis = moment(d.values[i].timestamp).valueOf();
-        addStop(gradient, 
+        addStop(gradient,
           percentageOfTotal(i, d.values),
           rgbOfPointInDay(nowMillis - startOfDayMillis, totalMillisOnDay));
       }
@@ -144,8 +144,8 @@ $(function() {
 
   function createLastFewWeeksChart() {
     var chart = nv.models.multiBarChart()
-          .height(150)
-          .width(320)
+          .height(300)
+          .width(720)
           .showLegend(false)
           .showControls(false)
           .stacked(true)
@@ -163,24 +163,28 @@ $(function() {
 
   var lastFewWeeksChart = createLastFewWeeksChart();
 
+  function createMapOfLastFiveWeeks() {
+    return _.range(4, -1) // Start at 4, increment -1
+      .map(function(minusWeeks) { return moment().subtract(minusWeeks, 'week').week();})
+      .map(function(week) {
+        return {
+          x: week,
+          y: 0
+        };
+      });
+  }
+
   function dataToDaysGroupedByWeek(data) {
     var dataGroupedByDayOfWeek = mapLabelAndSumValues(groupByDayOfWeek(_.reverse(data.events)));
 
     dataGroupedByDayOfWeek.forEach(function(dayOfWeek) {
-      var daysOfWeekGroupedByWeek = 
-        _.range(4, -1, -1)
-          .map(function(minusWeeks) { return moment().subtract(minusWeeks, 'week').week();})
-          .map(function(week) {
-            return {
-              x: week,
-              y: 0
-            };
-          });
-        dayOfWeek.values.forEach(function(a) { a.week = moment(a.timestamp).week();});
-        _.forEach(_.groupBy(dayOfWeek.values, function(item) { return moment(item.timestamp).week(); }), function(items, key) {
-          daysOfWeekGroupedByWeek.find(function(item) { return item.x == key;}).y = items.length;
-        });
-        dayOfWeek.values = daysOfWeekGroupedByWeek;
+      var lastFiveWeeks = createMapOfLastFiveWeeks();
+      dayOfWeek.values.forEach(function(a) { a.week = moment(a.timestamp).week();});
+      var dayOfWeekGroupedByWeek = _.groupBy(dayOfWeek.values, function(a) { return a.week; });
+      _.forEach(dayOfWeekGroupedByWeek, function(items, key) {
+        (lastFiveWeeks.find(function(item) { return item.x == key;}) || {}).y = items.length;
+      });
+      dayOfWeek.values = lastFiveWeeks;
     });
     return dataGroupedByDayOfWeek;
   }
@@ -194,7 +198,7 @@ $(function() {
         .datum(dataToDaysGroupedByWeek(data))
         .call(lastFewWeeksChart);
       d3.select('g.nv-multiBarWithLegend')
-        .attr('transform', 'translate(10,5)');
+        .attr('transform', 'translate(40,15)');
     });
 
     d3.json('api/days/8',function(error, data) {
@@ -203,7 +207,7 @@ $(function() {
         .datum([{values: dataGroupedByDay}])
         .call(lastFewDaysChart);
       d3.select('.nv-discreteBarWithAxes g')
-        .attr('transform', null);
+        .attr('transform', 'translate(0,15)');
     });
   });
 });

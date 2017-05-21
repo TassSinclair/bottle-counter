@@ -1,0 +1,26 @@
+.flip-clock-wrapper ul {
+		/*width: 60px*/ /* default */
+		width: 170px;
+		/*height: 90px;*/ /* default */
+		height: 270px;
+    margin: 5px 10px;
+}
+
+.flip-clock-wrapper ul li {
+	/*line-height: 87px;*/ /* default */
+	line-height: 261px;
+}
+
+.flip-clock-wrapper ul li a div div.inn {
+	/*font-size: 74px; */ /* default */
+	font-size: 222px;
+}
+
+.flip-clock-wrapper ul li a div.up:after {
+	/*top: 48px;*/
+	top: 132px;
+}
+
+.flip-clock-wrapper ul li a {
+	perspective: 1200px;
+}

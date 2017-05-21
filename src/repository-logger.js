@@ -1,7 +1,7 @@
 'use strict';
 
 class RepositoryLogger {
-  
+
   constructor(repository) {
     this.repository = repository;
   }
