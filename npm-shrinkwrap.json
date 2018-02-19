@@ -240,7 +240,7 @@
       "resolved": "https://registry.npmjs.org/flipclock/-/flipclock-0.7.8.tgz",
       "integrity": "sha1-838ffKkETZAsH+4fGuf0vR7vGlQ=",
       "requires": {
-        "jquery": "https://registry.npmjs.org/jquery/-/jquery-2.2.3.tgz"
+        "jquery": "3.3.1"
       }
     },
     "forwarded": {
@@ -320,8 +320,9 @@
       "version": "file:src/mock-johnny-five"
     },
     "jquery": {
-      "version": "https://registry.npmjs.org/jquery/-/jquery-2.2.3.tgz",
-      "integrity": "sha1-ReB+QZAzTeNsnhpktDsfE3PZF1g="
+      "version": "3.3.1",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz",
+      "integrity": "sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg=="
     },
     "json3": {
       "version": "https://registry.npmjs.org/json3/-/json3-3.2.6.tgz",
