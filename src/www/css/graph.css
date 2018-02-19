@@ -34,11 +34,13 @@ text.day-name {
 }
 
 text, path, .legend {
-	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s ease 0s;
 }
 
 .main-position text, .main-position path, .main-position .legend {
-  visibility: visible;
+  opacity: 1;
+	transition: opacity 0.5s ease 2s;
 }
 
 .nvd3 text {

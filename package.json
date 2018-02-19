@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": "true",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "./node_modules/.bin/jasmine"
   },
@@ -22,9 +22,11 @@
     "q": "^1.4.1",
     "raspi-io": "^5.2.0",
     "socket.io": "^1.4.5",
-    "sqlite3": "^3.1.4"
+    "sqlite3": "^3.1.13"
   },
   "devDependencies": {
-    "jasmine": "^2.4.1"
+    "jasmine": "^2.4.1",
+    "johnny-five": "file:src/mock-johnny-five",
+    "raspi-io": "file:src/mock-raspi-io"
   }
 }

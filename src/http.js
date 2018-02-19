@@ -19,14 +19,14 @@ class HttpServer {
 		  res.sendFile(__dirname + '/www/index.html');
 		});
 		this.app.use('/', express.static(__dirname + '/www/'));
-		
+
 		this.app.use('/resources', express.static(__dirname + '/../node_modules/'));
 
 		this.app.get('/api/days/:days', (req, res) => {
 		  var d = new Date();
 		  d.setDate(d.getDate() - req.params.days);
 		  this.bottleCounter.getSince(d).then(events => {
-		  	console.log(events);
+		  	console.log('Sending ' + events.length + ' events');
 		  	res.json({events});
 		  });
 		});

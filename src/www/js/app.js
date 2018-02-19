@@ -2,7 +2,7 @@ $(function() {
 
   var counter = $('.counter').FlipClock(0, {
     clockFace: 'Counter',
-    minimumDigits: 4
+    minimumDigits: 5
   });
 
   $('.counter').addClass('main-position');

@@ -3,3 +3,4 @@ database
 npm-debug.log
 setup/
 *.retry
+*.DS_Store
